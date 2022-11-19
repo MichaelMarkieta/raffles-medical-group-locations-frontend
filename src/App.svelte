@@ -10,7 +10,10 @@
   let fc = {};
 
   onMount(async () => {
-    fc = await (await fetch("http://127.0.0.1:5000")).json();
+    console.log(import.meta.env.PROD);
+    fc = await (
+      await fetch(import.meta.env.PROD ? "" : "http://127.0.0.1:5000")
+    ).json();
 
     const map = new mapboxgl.Map({
       container: "map",
